@@ -46,6 +46,60 @@
             margin-bottom: 10px;
         }
 
+        .currency-selector {
+            margin-bottom: 10px;
+        }
+
+        .currency-selector select {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .currency-selector select option {
+            background: #2563eb;
+            color: white;
+        }
+
+        .sync-section {
+            background: #e0f2fe;
+            border: 1px solid #0284c7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .sync-btn {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+
+        .sync-status {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #0369a1;
+        }
+
+        .conversion-info {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #0369a1;
+        }
+
         .total-badge {
             background: rgba(255,255,255,0.2);
             padding: 8px 16px;
@@ -236,6 +290,18 @@
             border-bottom: none;
         }
 
+        .edit-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
         .delete-btn {
             background: #ef4444;
             color: white;
@@ -300,8 +366,14 @@
     <div class="container">
         <div class="header">
             <h1>🛒 Liste d'Achats Marché</h1>
+            <div class="currency-selector">
+                <select id="currencySelect">
+                    <option value="GTQ">GTQ (Quetzal)</option>
+                    <option value="MXN">MXN (Peso)</option>
+                </select>
+            </div>
             <div class="total-badge">
-                Total: <span id="grandTotal">0,00 €</span>
+                Total: <span id="grandTotal">0,00</span> <span id="totalCurrency">GTQ</span>
             </div>
         </div>
 
@@ -338,14 +410,13 @@
                         <input type="number" id="quantity" step="0.01" min="0.01" placeholder="1" required>
                     </div>
                     <div class="form-group small">
-                        <label for="unitPrice">Prix unitaire (€)</label>
+                        <label for="unitPrice">Prix unitaire</label>
                         <input type="number" id="unitPrice" step="0.01" min="0" placeholder="0,00" required>
                     </div>
                     <div class="form-group small">
                         <label for="payment">Paiement</label>
                         <select id="payment" required>
-                            <option value="">Mode</option>
-                            <option value="Espèces">Espèces</option>
+                            <option value="Espèces" selected>Espèces</option>
                             <option value="Carte">Carte</option>
                             <option value="Chèque">Chèque</option>
                             <option value="Virement">Virement</option>
@@ -354,7 +425,18 @@
                 </div>
 
                 <button type="submit" class="btn">➕ Ajouter à la liste</button>
+                
+                <div class="conversion-info" id="conversionInfo" style="display: none;">
+                    💱 Taux de change en cours de chargement...
+                </div>
             </form>
+        </div>
+
+        <div class="sync-section">
+            <h3>☁️ Synchronisation</h3>
+            <button class="sync-btn" onclick="app.exportToCloud()">📤 Sauvegarder en ligne</button>
+            <button class="sync-btn" onclick="app.importFromCloud()">📥 Récupérer depuis le cloud</button>
+            <div class="sync-status" id="syncStatus">Dernière sync: jamais</div>
         </div>
 
         <div class="items-list" id="itemsList">
@@ -378,15 +460,22 @@
                 this.products = new Set(JSON.parse(localStorage.getItem('knownProducts') || '[]'));
                 this.vendors = new Set(JSON.parse(localStorage.getItem('knownVendors') || '[]'));
                 this.currentPhoto = null;
+                this.editingItemId = null;
+                this.currency = localStorage.getItem('selectedCurrency') || 'GTQ';
+                this.exchangeRates = JSON.parse(localStorage.getItem('exchangeRates') || '{}');
+                this.lastRateUpdate = localStorage.getItem('lastRateUpdate') || null;
                 
                 this.initEventListeners();
                 this.renderItems();
                 this.updateTotal();
+                this.loadExchangeRates();
+                document.getElementById('currencySelect').value = this.currency;
             }
 
             initEventListeners() {
                 document.getElementById('itemForm').addEventListener('submit', (e) => this.addItem(e));
                 document.getElementById('photoInput').addEventListener('change', (e) => this.handlePhoto(e));
+                document.getElementById('currencySelect').addEventListener('change', (e) => this.changeCurrency(e.target.value));
                 
                 // Autocomplete pour produits
                 const productInput = document.getElementById('productName');
@@ -403,7 +492,62 @@
                 document.getElementById('unitPrice').addEventListener('input', this.updatePreviewTotal);
             }
 
-            handlePhoto(event) {
+            async loadExchangeRates() {
+                try {
+                    // Vérifier si les taux sont récents (moins de 4h)
+                    const now = Date.now();
+                    const lastUpdate = this.lastRateUpdate ? parseInt(this.lastRateUpdate) : 0;
+                    const fourHours = 4 * 60 * 60 * 1000;
+                    
+                    if (now - lastUpdate < fourHours && Object.keys(this.exchangeRates).length > 0) {
+                        this.updateConversionInfo();
+                        return;
+                    }
+
+                    document.getElementById('conversionInfo').style.display = 'block';
+                    document.getElementById('conversionInfo').innerHTML = '💱 Mise à jour des taux de change...';
+
+                    // API gratuite pour les taux de change
+                    const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+                    const data = await response.json();
+                    
+                    this.exchangeRates = {
+                        GTQ: data.rates.GTQ || 7.8,
+                        MXN: data.rates.MXN || 18.2,
+                        USD: 1
+                    };
+                    
+                    this.lastRateUpdate = now.toString();
+                    localStorage.setItem('exchangeRates', JSON.stringify(this.exchangeRates));
+                    localStorage.setItem('lastRateUpdate', this.lastRateUpdate);
+                    
+                    this.updateConversionInfo();
+                } catch (error) {
+                    // Taux de fallback si pas de connexion
+                    if (Object.keys(this.exchangeRates).length === 0) {
+                        this.exchangeRates = { GTQ: 7.8, MXN: 18.2, USD: 1 };
+                    }
+                    document.getElementById('conversionInfo').innerHTML = '⚠️ Taux hors ligne utilisés';
+                }
+            }
+
+            updateConversionInfo() {
+                const info = document.getElementById('conversionInfo');
+                const currentCurrency = this.currency;
+                const otherCurrency = currentCurrency === 'GTQ' ? 'MXN' : 'GTQ';
+                const rate = this.exchangeRates[otherCurrency] / this.exchangeRates[currentCurrency];
+                
+                info.style.display = 'block';
+                info.innerHTML = `💱 1 ${currentCurrency} = ${rate.toFixed(3)} ${otherCurrency}`;
+            }
+
+            changeCurrency(newCurrency) {
+                this.currency = newCurrency;
+                localStorage.setItem('selectedCurrency', newCurrency);
+                document.getElementById('totalCurrency').textContent = newCurrency;
+                this.updateTotal();
+                this.updateConversionInfo();
+            }
                 const file = event.target.files[0];
                 if (file) {
                     const reader = new FileReader();
@@ -485,7 +629,6 @@
             addItem(event) {
                 event.preventDefault();
                 
-                const formData = new FormData(event.target);
                 const productName = document.getElementById('productName').value;
                 const vendor = document.getElementById('vendor').value;
                 const quantity = parseFloat(document.getElementById('quantity').value);
@@ -494,19 +637,40 @@
                 
                 const total = quantity * unitPrice;
                 
-                const item = {
-                    id: Date.now(),
-                    productName,
-                    vendor,
-                    quantity,
-                    unitPrice,
-                    total,
-                    payment,
-                    photo: this.currentPhoto,
-                    timestamp: new Date().toISOString()
-                };
+                if (this.editingItemId) {
+                    // Mode édition
+                    const itemIndex = this.items.findIndex(item => item.id === this.editingItemId);
+                    if (itemIndex !== -1) {
+                        this.items[itemIndex] = {
+                            ...this.items[itemIndex],
+                            productName,
+                            vendor,
+                            quantity,
+                            unitPrice,
+                            total,
+                            payment,
+                            photo: this.currentPhoto || this.items[itemIndex].photo
+                        };
+                    }
+                    this.editingItemId = null;
+                    document.querySelector('.btn').textContent = '➕ Ajouter à la liste';
+                } else {
+                    // Mode ajout
+                    const item = {
+                        id: Date.now(),
+                        productName,
+                        vendor,
+                        quantity,
+                        unitPrice,
+                        total,
+                        payment,
+                        photo: this.currentPhoto,
+                        timestamp: new Date().toISOString(),
+                        currency: this.currency
+                    };
+                    this.items.push(item);
+                }
 
-                this.items.push(item);
                 this.products.add(productName);
                 this.vendors.add(vendor);
                 
@@ -514,6 +678,35 @@
                 this.renderItems();
                 this.updateTotal();
                 this.resetForm();
+            }
+
+            editItem(id) {
+                const item = this.items.find(item => item.id === id);
+                if (!item) return;
+
+                // Remplir le formulaire avec les données de l'item
+                document.getElementById('productName').value = item.productName;
+                document.getElementById('vendor').value = item.vendor;
+                document.getElementById('quantity').value = item.quantity;
+                document.getElementById('unitPrice').value = item.unitPrice;
+                document.getElementById('payment').value = item.payment;
+                
+                // Gérer la photo
+                if (item.photo) {
+                    this.currentPhoto = item.photo;
+                    const preview = document.getElementById('photoPreview');
+                    const icon = document.getElementById('photoIcon');
+                    preview.src = item.photo;
+                    preview.style.display = 'block';
+                    icon.style.display = 'none';
+                }
+
+                // Passer en mode édition
+                this.editingItemId = id;
+                document.querySelector('.btn').textContent = '✏️ Modifier l\'article';
+
+                // Scroller vers le haut
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
             deleteItem(id) {
@@ -541,14 +734,15 @@
                         ${item.photo ? `<img src="${item.photo}" class="item-photo" alt="${item.productName}">` : ''}
                         <div class="item-header">
                             <div class="item-name">${item.productName}</div>
-                            <div class="item-total">${item.total.toFixed(2)} €</div>
+                            <div class="item-total">${this.convertToCurrentCurrency(item.total, item.currency || 'GTQ').toFixed(2)} ${this.currency}</div>
                         </div>
                         <div class="item-details">
                             <div><strong>Fournisseur:</strong> ${item.vendor}</div>
                             <div><strong>Quantité:</strong> ${item.quantity}</div>
-                            <div><strong>Prix unitaire:</strong> ${item.unitPrice.toFixed(2)} €</div>
+                            <div><strong>Prix unitaire:</strong> ${this.convertToCurrentCurrency(item.unitPrice, item.currency || 'GTQ').toFixed(2)} ${this.currency}</div>
                             <div><strong>Paiement:</strong> ${item.payment}</div>
                         </div>
+                        <button class="edit-btn" onclick="app.editItem(${item.id})">✏️ Modifier</button>
                         <button class="delete-btn" onclick="app.deleteItem(${item.id})">🗑️ Supprimer</button>
                     </div>
                 `).join('');
@@ -566,7 +760,7 @@
                         vendorTotals[item.vendor] = 0;
                         vendorPayments[item.vendor] = new Set();
                     }
-                    vendorTotals[item.vendor] += item.total;
+                    vendorTotals[item.vendor] += this.convertToCurrentCurrency(item.total, item.currency || 'GTQ');
                     vendorPayments[item.vendor].add(item.payment);
                 });
                 
@@ -580,23 +774,149 @@
                                 ).join('')}
                             </div>
                         </div>
-                        <div><strong>${total.toFixed(2)} €</strong></div>
+                        <div><strong>${total.toFixed(2)} ${this.currency}</strong></div>
                     </div>
                 `).join('');
                 
                 document.getElementById('vendorSummary').innerHTML = summaryHTML;
             }
 
+            convertToCurrentCurrency(amount, fromCurrency) {
+                if (!fromCurrency || fromCurrency === this.currency) return amount;
+                
+                const fromRate = this.exchangeRates[fromCurrency] || 1;
+                const toRate = this.exchangeRates[this.currency] || 1;
+                
+                return (amount / fromRate) * toRate;
+            }
+
             updateTotal() {
-                const total = this.items.reduce((sum, item) => sum + item.total, 0);
-                document.getElementById('grandTotal').textContent = `${total.toFixed(2)} €`;
+                const total = this.items.reduce((sum, item) => {
+                    return sum + this.convertToCurrentCurrency(item.total, item.currency || 'GTQ');
+                }, 0);
+                document.getElementById('grandTotal').textContent = total.toFixed(2);
+                document.getElementById('totalCurrency').textContent = this.currency;
+            }
+
+            async exportToCloud() {
+                try {
+                    const data = {
+                        items: this.items,
+                        products: Array.from(this.products),
+                        vendors: Array.from(this.vendors),
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    // Utiliser JSONBin.io comme storage gratuit
+                    const response = await fetch('https://api.jsonbin.io/v3/b', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Master-Key': '$2a$10$FakeKeyForDemo123456789'
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        localStorage.setItem('cloudBackupId', result.metadata.id);
+                        document.getElementById('syncStatus').textContent = `Sauvegardé: ${new Date().toLocaleString()}`;
+                    }
+                } catch (error) {
+                    // Fallback: export local
+                    const data = {
+                        items: this.items,
+                        products: Array.from(this.products),
+                        vendors: Array.from(this.vendors)
+                    };
+                    
+                    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `marche-backup-${new Date().toISOString().split('T')[0]}.json`;
+                    a.click();
+                    
+                    document.getElementById('syncStatus').textContent = 'Fichier téléchargé localement';
+                }
+            }
+
+            async importFromCloud() {
+                try {
+                    const backupId = localStorage.getItem('cloudBackupId');
+                    if (!backupId) {
+                        alert('Aucune sauvegarde cloud trouvée');
+                        return;
+                    }
+                    
+                    const response = await fetch(`https://api.jsonbin.io/v3/b/${backupId}`, {
+                        headers: {
+                            'X-Master-Key': '$2a$10$FakeKeyForDemo123456789'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        const data = result.record;
+                        
+                        this.items = data.items || [];
+                        this.products = new Set(data.products || []);
+                        this.vendors = new Set(data.vendors || []);
+                        
+                        this.saveData();
+                        this.renderItems();
+                        this.updateTotal();
+                        
+                        document.getElementById('syncStatus').textContent = `Récupéré: ${new Date().toLocaleString()}`;
+                    }
+                } catch (error) {
+                    // Fallback: import file
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = '.json';
+                    input.onchange = (e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                try {
+                                    const data = JSON.parse(e.target.result);
+                                    this.items = data.items || [];
+                                    this.products = new Set(data.products || []);
+                                    this.vendors = new Set(data.vendors || []);
+                                    
+                                    this.saveData();
+                                    this.renderItems();
+                                    this.updateTotal();
+                                    
+                                    document.getElementById('syncStatus').textContent = 'Fichier importé';
+                                } catch (error) {
+                                    alert('Erreur lors de l\'import du fichier');
+                                }
+                            };
+                            reader.readAsText(file);
+                        }
+                    };
+                    input.click();
+                }
+            }
+
+            updateTotal() {
+                const total = this.items.reduce((sum, item) => {
+                    return sum + this.convertToCurrentCurrency(item.total, item.currency || 'GTQ');
+                }, 0);
+                document.getElementById('grandTotal').textContent = total.toFixed(2);
+                document.getElementById('totalCurrency').textContent = this.currency;
             }
 
             resetForm() {
                 document.getElementById('itemForm').reset();
                 document.getElementById('photoPreview').style.display = 'none';
                 document.getElementById('photoIcon').style.display = 'block';
+                document.getElementById('payment').value = 'Espèces'; // Remettre espèces par défaut
                 this.currentPhoto = null;
+                this.editingItemId = null;
+                document.querySelector('.btn').textContent = '➕ Ajouter à la liste';
             }
 
             saveData() {
