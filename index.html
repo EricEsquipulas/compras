@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste d'Achats Marché</title>
+    <title>Liste d'Achats</title>
     <meta name="theme-color" content="#2563eb">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -38,6 +38,13 @@
             position: sticky;
             top: 0;
             z-index: 100;
+        }
+
+        .app-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            vertical-align: middle;
         }
 
         .header h1 {
@@ -110,6 +117,11 @@
             border-color: #2563eb;
         }
 
+        .photo-section {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
         .photo-gallery {
             display: flex;
             gap: 10px;
@@ -144,9 +156,6 @@
             height: 20px;
             font-size: 12px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .add-photo-btn {
@@ -161,47 +170,6 @@
             justify-content: center;
             font-size: 24px;
             color: #94a3b8;
-            transition: all 0.2s;
-        }
-
-        .add-photo-btn:hover {
-            border-color: #2563eb;
-            color: #2563eb;
-        }
-
-        .photo-section {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .photo-preview {
-            width: 100px;
-            height: 100px;
-            border: 2px dashed #cbd5e1;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .photo-preview:hover {
-            border-color: #2563eb;
-            background: #f1f5f9;
-        }
-
-        .photo-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-
-        .photo-icon {
-            color: #94a3b8;
-            font-size: 2rem;
         }
 
         #photoInput {
@@ -218,15 +186,6 @@
             cursor: pointer;
             width: 100%;
             font-size: 16px;
-            transition: transform 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn:active {
-            transform: translateY(0);
         }
 
         .conversion-info {
@@ -305,41 +264,6 @@
             color: #6b7280;
         }
 
-        .item-photo {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-            float: right;
-            margin-left: 10px;
-        }
-
-        .autocomplete-suggestions {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 0 0 8px 8px;
-            max-height: 150px;
-            overflow-y: auto;
-            z-index: 10;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            display: none;
-        }
-
-        .suggestion-item {
-            padding: 12px;
-            cursor: pointer;
-            border-bottom: 1px solid #f1f5f9;
-            transition: background 0.2s;
-        }
-
-        .suggestion-item:hover {
-            background: #f8fafc;
-        }
-
         .edit-btn {
             background: #3b82f6;
             color: white;
@@ -385,21 +309,6 @@
             align-items: center;
         }
 
-        .payment-methods {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .payment-method {
-            background: #e0e7ff;
-            color: #3730a3;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-        }
-
         .empty-state {
             text-align: center;
             padding: 40px 20px;
@@ -415,7 +324,32 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🛒 Liste d'Achats Marché</h1>
+            <h1 id="appTitle">
+                <svg class="app-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Rayons du soleil -->
+                    <g stroke="#FFD700" stroke-width="2">
+                        <line x1="32" y1="2" x2="32" y2="8"/>
+                        <line x1="32" y1="56" x2="32" y2="62"/>
+                        <line x1="2" y1="32" x2="8" y2="32"/>
+                        <line x1="56" y1="32" x2="62" y2="32"/>
+                        <line x1="11.5" y1="11.5" x2="16" y2="16"/>
+                        <line x1="48" y1="48" x2="52.5" y2="52.5"/>
+                        <line x1="52.5" y1="11.5" x2="48" y2="16"/>
+                        <line x1="16" y1="48" x2="11.5" y2="52.5"/>
+                        <line x1="20" y1="6" x2="22" y2="12"/>
+                        <line x1="42" y1="52" x2="44" y2="58"/>
+                        <line x1="6" y1="20" x2="12" y2="22"/>
+                        <line x1="52" y1="42" x2="58" y2="44"/>
+                        <line x1="6" y1="44" x2="12" y2="42"/>
+                        <line x1="52" y1="22" x2="58" y2="20"/>
+                        <line x1="20" y1="58" x2="22" y2="52"/>
+                        <line x1="42" y1="12" x2="44" y2="6"/>
+                    </g>
+                    <!-- Cœur rouge -->
+                    <path d="M32 50C32 50 48 38 48 26C48 20 44 16 38 16C35 16 32 18 32 18S29 16 26 16C20 16 16 20 16 26C16 38 32 50 32 50Z" fill="#DC2626"/>
+                </svg>
+                Liste d'Achats
+            </h1>
             <div class="currency-selector">
                 <select id="currencySelect" onchange="changeCurrency(this.value)">
                     <option value="GTQ">GTQ (Quetzal)</option>
@@ -432,38 +366,34 @@
             <div class="photo-section">
                 <label>Photos du produit:</label>
                 <div class="photo-gallery" id="photoGallery">
-                    <button type="button" class="add-photo-btn" onclick="document.getElementById('photoInput').click()">
-                        📷
-                    </button>
+                    <button type="button" class="add-photo-btn" onclick="addPhoto()">📷</button>
                 </div>
                 <input type="file" id="photoInput" accept="image/*" capture="environment" onchange="handlePhoto(event)" multiple>
-                <small style="color: #6b7280;">Touchez + pour ajouter des photos</small>
+                <small style="color: #6b7280;">Touchez 📷 pour ajouter des photos (max 5)</small>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="productName">Produit</label>
-                    <input type="text" id="productName" placeholder="Nom du produit" autocomplete="off" oninput="showProductSuggestions(this.value)" onblur="setTimeout(hideProductSuggestions, 200)">
-                    <div class="autocomplete-suggestions" id="productSuggestions"></div>
+                    <input type="text" id="productName" placeholder="Nom du produit" autocomplete="off">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="vendor">Fournisseur</label>
-                    <input type="text" id="vendor" placeholder="Nom du vendeur" autocomplete="off" oninput="showVendorSuggestions(this.value)" onblur="setTimeout(hideVendorSuggestions, 200)">
-                    <div class="autocomplete-suggestions" id="vendorSuggestions"></div>
+                    <input type="text" id="vendor" placeholder="Nom du vendeur" autocomplete="off">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group small">
                     <label for="quantity">Quantité</label>
-                    <input type="number" id="quantity" step="1" min="0.01" placeholder="1">
+                    <input type="number" id="quantity" step="1" min="1" placeholder="1" value="1">
                 </div>
                 <div class="form-group small">
                     <label for="unitPrice">Prix unitaire</label>
-                    <input type="number" id="unitPrice" step="0.01" min="0" placeholder="0,00">
+                    <input type="number" id="unitPrice" step="0.1" min="0" placeholder="0,00">
                 </div>
                 <div class="form-group small">
                     <label for="payment">Paiement</label>
@@ -477,18 +407,13 @@
             </div>
 
             <button type="button" class="btn" id="addBtn" onclick="addItem()">➕ Ajouter à la liste</button>
-            
-            <div class="conversion-info" id="conversionInfo" style="display: none;">
-                💱 Taux de change en cours de chargement...
-                <br><small>💶 Équivalent EUR affiché en temps réel</small>
-            </div>
         </div>
 
         <div class="sync-section">
             <h3>☁️ Synchronisation</h3>
-            <button class="sync-btn" onclick="exportToCloud()">📤 Sauvegarder</button>
-            <button class="sync-btn" onclick="importFromCloud()">📥 Récupérer</button>
-            <div class="sync-status" id="syncStatus">Dernière sync: jamais</div>
+            <button class="sync-btn" onclick="exportData()">📤 Sauvegarder</button>
+            <button class="sync-btn" onclick="importData()">📥 Récupérer</button>
+            <div class="sync-status" id="syncStatus">Prêt</div>
         </div>
 
         <div class="items-list" id="itemsList">
@@ -508,83 +433,117 @@
     <script>
         // Variables globales
         let items = [];
-        let products = new Set();
-        let vendors = new Set();
-        let currentPhotos = []; // Tableau de photos au lieu d'une seule
+        let currentPhotos = [];
         let editingItemId = null;
         let currency = 'GTQ';
-        let exchangeRates = { GTQ: 7.8, MXN: 18.2, EUR: 0.92, USD: 1 };
-        let userName = localStorage.getItem('userName') || '';
+        let userName = 'USER';
 
         // Initialisation
         function init() {
-            // Demander le nom utilisateur si pas défini
-            if (!userName) {
-                userName = prompt('Votre nom/pseudo pour identifier vos achats:') || 'USER';
-                localStorage.setItem('userName', userName);
-            }
-            
-            loadData();
-            loadExchangeRates();
-            renderItems();
-            updateTotal();
-            document.getElementById('currencySelect').value = currency;
-            document.getElementById('totalCurrency').textContent = currency;
-        }
-
-        function generateUniqueId() {
-            const timestamp = Date.now();
-            const random = Math.random().toString(36).substring(2, 6).toUpperCase();
-            return `${userName}_${timestamp}_${random}`;
-        }
-
-        function loadData() {
             try {
-                items = JSON.parse(localStorage.getItem('marketItems') || '[]');
-                products = new Set(JSON.parse(localStorage.getItem('knownProducts') || '[]'));
-                vendors = new Set(JSON.parse(localStorage.getItem('knownVendors') || '[]'));
+                // Nettoyer complètement les données corrompues
+                localStorage.removeItem('marketItems'); // Reset complet
+                items = [];
+                
                 currency = localStorage.getItem('selectedCurrency') || 'GTQ';
-                exchangeRates = JSON.parse(localStorage.getItem('exchangeRates') || '{"GTQ": 1, "MXN": 2.33}');
+                userName = localStorage.getItem('userName') || 'USER';
+                
+                saveData();
+                renderItems();
+                updateTotal();
+                
+                const currencySelect = document.getElementById('currencySelect');
+                if (currencySelect) currencySelect.value = currency;
+                
+                const totalCurrency = document.getElementById('totalCurrency');
+                if (totalCurrency) totalCurrency.textContent = currency;
+                
+                console.log('App initialisée avec données nettoyées');
+                
             } catch (error) {
-                console.error('Erreur chargement données:', error);
+                console.error('Erreur init:', error);
             }
         }
 
-        function saveData() {
-            try {
-                localStorage.setItem('marketItems', JSON.stringify(items));
-                localStorage.setItem('knownProducts', JSON.stringify(Array.from(products)));
-                localStorage.setItem('knownVendors', JSON.stringify(Array.from(vendors)));
-                localStorage.setItem('selectedCurrency', currency);
-                localStorage.setItem('exchangeRates', JSON.stringify(exchangeRates));
-            } catch (error) {
-                console.error('Erreur sauvegarde:', error);
+        function addPhoto() {
+            const photoInput = document.getElementById('photoInput');
+            if (photoInput) photoInput.click();
+        }
+
+        function handlePhoto(event) {
+            const files = Array.from(event.target.files);
+            
+            files.forEach(file => {
+                if (file && currentPhotos.length < 5) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        currentPhotos.push(e.target.result);
+                        updatePhotoDisplay();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            if (event.target) event.target.value = '';
+        }
+
+        function updatePhotoDisplay() {
+            const gallery = document.getElementById('photoGallery');
+            if (!gallery) return;
+            
+            gallery.innerHTML = '';
+            
+            // Affiche les photos
+            currentPhotos.forEach((photo, index) => {
+                const photoDiv = document.createElement('div');
+                photoDiv.className = 'photo-item';
+                photoDiv.innerHTML = `
+                    <img src="${photo}" alt="Photo ${index + 1}">
+                    <button class="remove-photo" onclick="removePhoto(${index})">×</button>
+                `;
+                gallery.appendChild(photoDiv);
+            });
+            
+            // Bouton d'ajout
+            if (currentPhotos.length < 5) {
+                const addBtn = document.createElement('button');
+                addBtn.type = 'button';
+                addBtn.className = 'add-photo-btn';
+                addBtn.innerHTML = '📷';
+                addBtn.onclick = addPhoto;
+                gallery.appendChild(addBtn);
             }
+        }
+
+        function removePhoto(index) {
+            currentPhotos.splice(index, 1);
+            updatePhotoDisplay();
         }
 
         function addItem() {
             try {
-                const productName = document.getElementById('productName').value.trim();
-                const vendor = document.getElementById('vendor').value.trim();
-                const quantity = parseFloat(document.getElementById('quantity').value) || 1;
-                const unitPrice = parseFloat(document.getElementById('unitPrice').value) || 0;
-                const payment = document.getElementById('payment').value;
+                const productName = getInputValue('productName');
+                const vendor = getInputValue('vendor');
+                const quantity = parseFloat(getInputValue('quantity')) || 1;
+                const unitPrice = parseFloat(getInputValue('unitPrice')) || 0;
+                const payment = getInputValue('payment') || 'Espèces';
 
-                if (!productName) {
+                if (!productName.trim()) {
                     alert('Veuillez saisir un nom de produit');
                     return;
                 }
 
-                if (!vendor) {
+                if (!vendor.trim()) {
                     alert('Veuillez saisir un nom de vendeur');
                     return;
                 }
 
                 const total = quantity * unitPrice;
+                const timestamp = Date.now();
 
                 if (editingItemId) {
                     // Mode édition
-                    const itemIndex = items.findIndex(item => item.id === editingItemId);
+                    const itemIndex = items.findIndex(item => item.id == editingItemId); // == au lieu de ===
                     if (itemIndex !== -1) {
                         items[itemIndex] = {
                             ...items[itemIndex],
@@ -594,33 +553,30 @@
                             unitPrice,
                             total,
                             payment,
-                            photo: currentPhoto || items[itemIndex].photo,
+                            photos: [...currentPhotos],
                             currency: currency
                         };
                     }
                     editingItemId = null;
-                    document.getElementById('addBtn').textContent = '➕ Ajouter à la liste';
+                    const addBtn = document.getElementById('addBtn');
+                    if (addBtn) addBtn.textContent = '➕ Ajouter à la liste';
                 } else {
                     // Mode ajout
                     const item = {
-                        id: generateUniqueId(), // ID unique multi-utilisateurs
+                        id: Date.now(), // ID simple sans caractères spéciaux
                         productName,
                         vendor,
                         quantity,
                         unitPrice,
                         total,
                         payment,
-                        photo: currentPhotos[0] || null, // Première photo comme principale pour compatibilité
-                        photos: currentPhotos, // Toutes les photos
+                        photos: [...currentPhotos],
                         timestamp: new Date().toISOString(),
                         currency: currency,
                         userId: userName
                     };
                     items.push(item);
                 }
-
-                products.add(productName);
-                vendors.add(vendor);
 
                 saveData();
                 renderItems();
@@ -629,307 +585,213 @@
 
             } catch (error) {
                 console.error('Erreur ajout item:', error);
-                alert('Erreur lors de l\'ajout de l\'article');
+                alert('Erreur lors de l\'ajout: ' + error.message);
             }
         }
 
-        function editItem(id) {
-            const item = items.find(item => item.id === id);
-            if (!item) return;
-
-            document.getElementById('productName').value = item.productName;
-            document.getElementById('vendor').value = item.vendor;
-            document.getElementById('quantity').value = item.quantity;
-            document.getElementById('unitPrice').value = item.unitPrice;
-            document.getElementById('payment').value = item.payment;
-
-            // Gérer les photos
-            if (item.photos && item.photos.length > 0) {
-                currentPhotos = [...item.photos];
-            } else if (item.photo) {
-                currentPhotos = [item.photo]; // Rétrocompatibilité
-            } else {
-                currentPhotos = [];
-            }
-            renderPhotoGallery();
-
-            editingItemId = id;
-            document.getElementById('addBtn').textContent = '✏️ Modifier l\'article';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function getInputValue(id) {
+            const element = document.getElementById(id);
+            return element ? element.value : '';
         }
 
-        function deleteItem(id) {
-            if (confirm('Supprimer cet article ?')) {
-                items = items.filter(item => item.id !== id);
+        function editItem(index) {
+            try {
+                const item = items[index];
+                if (!item) return;
+
+                setInputValue('productName', item.productName);
+                setInputValue('vendor', item.vendor);
+                setInputValue('quantity', item.quantity);
+                setInputValue('unitPrice', item.unitPrice);
+                setInputValue('payment', item.payment);
+
+                currentPhotos = item.photos ? [...item.photos] : [];
+                updatePhotoDisplay();
+
+                editingItemId = item.id;
+                const addBtn = document.getElementById('addBtn');
+                if (addBtn) addBtn.textContent = '✏️ Modifier l\'article';
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                console.error('Erreur édition:', error);
+            }
+        }
+
+        function setInputValue(id, value) {
+            const element = document.getElementById(id);
+            if (element) element.value = value;
+        }
+
+        function deleteItem(index) {
+            console.log('deleteItem appelé avec index:', index);
+            console.log('items avant suppression:', items.length);
+            
+            if (index >= 0 && index < items.length) {
+                // Suppression directe sans confirm() car il est bloqué dans l'iframe
+                items.splice(index, 1);
+                console.log('items après suppression:', items.length);
                 saveData();
                 renderItems();
                 updateTotal();
+                alert('Article supprimé !'); // Feedback utilisateur
+            } else {
+                console.error('Index invalide:', index);
             }
         }
 
         function renderItems() {
+            console.log('renderItems appelé, nombre d\'items:', items.length);
+            
             const itemsList = document.getElementById('itemsList');
             const emptyState = document.getElementById('emptyState');
+            const summarySection = document.getElementById('summarySection');
 
-            if (items.length === 0) {
-                emptyState.style.display = 'block';
-                document.getElementById('summarySection').style.display = 'none';
+            if (!itemsList) {
+                console.error('itemsList non trouvé');
                 return;
             }
 
-            emptyState.style.display = 'none';
-            document.getElementById('summarySection').style.display = 'block';
+            if (items.length === 0) {
+                console.log('Affichage état vide');
+                if (emptyState) emptyState.style.display = 'block';
+                if (summarySection) summarySection.style.display = 'none';
+                itemsList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">🛍️</div>
+                        <p>Aucun article pour le moment</p>
+                        <p>Commencez à ajouter vos achats !</p>
+                    </div>
+                `;
+                return;
+            }
 
-            const itemsHTML = items.map(item => `
-                <div class="item-card">
-                    ${item.photo ? `<img src="${item.photo}" class="item-photo" alt="${item.productName}">` : ''}
-                    <div class="item-header">
-                        <div class="item-name">${item.productName}</div>
-                        <div class="item-total">
-                            ${convertToCurrentCurrency(item.total, item.currency || 'GTQ').toFixed(2)} ${currency}
-                            <br><small>≈ ${convertToEuros(item.total, item.currency || 'GTQ').toFixed(2)} EUR</small>
+            console.log('Affichage des items');
+            if (emptyState) emptyState.style.display = 'none';
+            if (summarySection) summarySection.style.display = 'block';
+
+            const itemsHTML = items.map((item, index) => {
+                let photosHtml = '';
+                if (item.photos && item.photos.length > 0) {
+                    photosHtml = `
+                        <div class="photo-gallery">
+                            ${item.photos.slice(0, 3).map(photo => 
+                                `<div class="photo-item"><img src="${photo}" alt="${item.productName}"></div>`
+                            ).join('')}
+                            ${item.photos.length > 3 ? `<div class="photo-item"><span>+${item.photos.length - 3}</span></div>` : ''}
                         </div>
+                    `;
+                }
+
+                const total = item.total || 0;
+                const euroEquivalent = convertToEuros(total);
+
+                return `
+                    <div class="item-card">
+                        ${photosHtml}
+                        <div class="item-header">
+                            <div class="item-name">${item.productName}</div>
+                            <div class="item-total">${total.toFixed(2)} ${currency}
+                                <br><small>≈ ${euroEquivalent.toFixed(2)} EUR</small>
+                            </div>
+                        </div>
+                        <div class="item-details">
+                            <div><strong>Fournisseur:</strong> ${item.vendor}</div>
+                            <div><strong>Quantité:</strong> ${item.quantity}</div>
+                            <div><strong>Prix unitaire:</strong> ${(item.unitPrice || 0).toFixed(2)} ${currency}</div>
+                            <div><strong>Paiement:</strong> ${item.payment}</div>
+                        </div>
+                        <button class="edit-btn" onclick="editItem(${index}); console.log('Edit clicked:', ${index})">✏️ Modifier</button>
+                        <button class="delete-btn" onclick="deleteItem(${index}); console.log('Delete clicked:', ${index})">🗑️ Supprimer</button>
                     </div>
-                    <div class="item-details">
-                        <div><strong>Fournisseur:</strong> ${item.vendor}</div>
-                        <div><strong>Quantité:</strong> ${item.quantity}</div>
-                        <div><strong>Prix unitaire:</strong> ${convertToCurrentCurrency(item.unitPrice, item.currency || 'GTQ').toFixed(2)} ${currency}</div>
-                        <div><strong>Paiement:</strong> ${item.payment}</div>
-                    </div>
-                    <button class="edit-btn" onclick="editItem(${item.id})">✏️ Modifier</button>
-                    <button class="delete-btn" onclick="deleteItem(${item.id})">🗑️ Supprimer</button>
-                </div>
-            `).join('');
+                `;
+            }).join('');
 
             itemsList.innerHTML = itemsHTML;
             renderSummary();
         }
 
         function renderSummary() {
-            const vendorTotals = {};
-            const vendorPayments = {};
+            const vendorSummary = document.getElementById('vendorSummary');
+            if (!vendorSummary) return;
 
+            const vendorTotals = {};
             items.forEach(item => {
                 if (!vendorTotals[item.vendor]) {
                     vendorTotals[item.vendor] = 0;
-                    vendorPayments[item.vendor] = new Set();
                 }
-                vendorTotals[item.vendor] += convertToCurrentCurrency(item.total, item.currency || 'GTQ');
-                vendorPayments[item.vendor].add(item.payment);
+                vendorTotals[item.vendor] += item.total || 0;
             });
 
             const summaryHTML = Object.entries(vendorTotals).map(([vendor, total]) => `
                 <div class="vendor-summary">
-                    <div>
-                        <strong>${vendor}</strong>
-                        <div class="payment-methods">
-                            ${Array.from(vendorPayments[vendor]).map(payment => 
-                                `<span class="payment-method">${payment}</span>`
-                            ).join('')}
-                        </div>
-                    </div>
+                    <div><strong>${vendor}</strong></div>
                     <div><strong>${total.toFixed(2)} ${currency}</strong>
-                     <br><small>≈ ${convertToEuros(total, currency).toFixed(2)} EUR</small></div>
+                     <br><small>≈ ${convertToEuros(total).toFixed(2)} EUR</small></div>
                 </div>
             `).join('');
 
-            document.getElementById('vendorSummary').innerHTML = summaryHTML;
-        }
-
-        function convertToEuros(amount, fromCurrency) {
-            if (!amount || isNaN(amount)) return 0;
-            if (!fromCurrency) fromCurrency = 'GTQ';
-            
-            // Utilise les taux de l'API (ou fallback si pas de connexion)
-            const fromRate = exchangeRates[fromCurrency] || 7.8;
-            const eurRate = exchangeRates['EUR'] || 0.92;
-            
-            // Conversion: Local → USD → EUR
-            const usdAmount = amount / fromRate;
-            const eurAmount = usdAmount * eurRate;
-            
-            return eurAmount || 0;
+            vendorSummary.innerHTML = summaryHTML;
         }
 
         function updateTotal() {
-            const total = items.reduce((sum, item) => {
-                return sum + convertToCurrentCurrency(item.total, item.currency || 'GTQ');
-            }, 0);
+            const total = items.reduce((sum, item) => sum + (item.total || 0), 0);
             
-            document.getElementById('grandTotal').textContent = total.toFixed(2);
-            document.getElementById('totalCurrency').textContent = currency;
+            const grandTotal = document.getElementById('grandTotal');
+            const euroTotal = document.getElementById('euroTotal');
+            const totalCurrency = document.getElementById('totalCurrency');
             
-            // Calcul du total en euros avec vérification
-            const euroTotal = convertToEuros(total, currency);
-            const euroElement = document.getElementById('euroTotal');
-            if (euroElement) {
-                euroElement.textContent = (euroTotal || 0).toFixed(2);
-            }
+            if (grandTotal) grandTotal.textContent = total.toFixed(2);
+            if (totalCurrency) totalCurrency.textContent = currency;
+            if (euroTotal) euroTotal.textContent = convertToEuros(total).toFixed(2);
         }
 
-        function convertToCurrentCurrency(amount, fromCurrency) {
-            if (!fromCurrency || fromCurrency === currency) return amount;
-            const fromRate = exchangeRates[fromCurrency] || 1;
-            const toRate = exchangeRates[currency] || 1;
-            return (amount / fromRate) * toRate;
+        function convertToEuros(amount) {
+            // Taux approximatifs : GTQ ≈ 0.13 USD, MXN ≈ 0.055 USD, EUR ≈ 0.92 USD
+            const rates = { GTQ: 0.13, MXN: 0.055, EUR: 0.92 };
+            const usdAmount = amount * (rates[currency] || 0.13);
+            return usdAmount / 0.92; // USD vers EUR
         }
 
         function changeCurrency(newCurrency) {
             currency = newCurrency;
-            document.getElementById('totalCurrency').textContent = newCurrency;
+            const totalCurrency = document.getElementById('totalCurrency');
+            if (totalCurrency) totalCurrency.textContent = newCurrency;
             updateTotal();
             renderItems();
-            updateConversionInfo();
             saveData();
         }
 
         function resetForm() {
-            document.getElementById('productName').value = '';
-            document.getElementById('vendor').value = '';
-            document.getElementById('quantity').value = '';
-            document.getElementById('unitPrice').value = '';
-            document.getElementById('payment').value = 'Espèces';
-            currentPhotos = [];
-            renderPhotoGallery();
-            editingItemId = null;
-            document.getElementById('addBtn').textContent = '➕ Ajouter à la liste';
-        }
-
-        function showPhotoModal(photoSrc) {
-            // Modal simple pour voir la photo en grand
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-                background: rgba(0,0,0,0.8); z-index: 1000;
-                display: flex; align-items: center; justify-content: center;
-                cursor: pointer;
-            `;
-            modal.innerHTML = `<img src="${photoSrc}" style="max-width: 90%; max-height: 90%; object-fit: contain;">`;
-            modal.onclick = () => modal.remove();
-            document.body.appendChild(modal);
-        }
-
-        function handlePhoto(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    currentPhoto = e.target.result;
-                    const preview = document.getElementById('photoPreview');
-                    const icon = document.getElementById('photoIcon');
-                    preview.src = currentPhoto;
-                    preview.style.display = 'block';
-                    icon.style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function showProductSuggestions(value) {
-            const suggestions = document.getElementById('productSuggestions');
-            if (value.length < 2) {
-                suggestions.style.display = 'none';
-                return;
-            }
-
-            const matches = Array.from(products).filter(product => 
-                product.toLowerCase().includes(value.toLowerCase())
-            );
-
-            if (matches.length === 0) {
-                suggestions.style.display = 'none';
-                return;
-            }
-
-            suggestions.innerHTML = matches.map(product => 
-                `<div class="suggestion-item" onclick="selectProduct('${product}')">${product}</div>`
-            ).join('');
-            suggestions.style.display = 'block';
-        }
-
-        function showVendorSuggestions(value) {
-            const suggestions = document.getElementById('vendorSuggestions');
-            if (value.length < 2) {
-                suggestions.style.display = 'none';
-                return;
-            }
-
-            const matches = Array.from(vendors).filter(vendor => 
-                vendor.toLowerCase().includes(value.toLowerCase())
-            );
-
-            if (matches.length === 0) {
-                suggestions.style.display = 'none';
-                return;
-            }
-
-            suggestions.innerHTML = matches.map(vendor => 
-                `<div class="suggestion-item" onclick="selectVendor('${vendor}')">${vendor}</div>`
-            ).join('');
-            suggestions.style.display = 'block';
-        }
-
-        function selectProduct(product) {
-            document.getElementById('productName').value = product;
-            hideProductSuggestions();
-        }
-
-        function selectVendor(vendor) {
-            document.getElementById('vendor').value = vendor;
-            hideVendorSuggestions();
-        }
-
-        function hideProductSuggestions() {
-            document.getElementById('productSuggestions').style.display = 'none';
-        }
-
-        function hideVendorSuggestions() {
-            document.getElementById('vendorSuggestions').style.display = 'none';
-        }
-
-        async function loadExchangeRates() {
-            try {
-                document.getElementById('conversionInfo').innerHTML = '💱 Mise à jour des taux...';
-                document.getElementById('conversionInfo').style.display = 'block';
-                
-                const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
-                const data = await response.json();
-                
-                exchangeRates = {
-                    GTQ: data.rates.GTQ || 7.8,    
-                    MXN: data.rates.MXN || 18.2,   
-                    EUR: data.rates.EUR || 0.92,   
-                    USD: 1                          
-                };
-                
-                localStorage.setItem('exchangeRates', JSON.stringify(exchangeRates));
-                updateConversionInfo();
-                updateTotal(); // Recalcule avec les nouveaux taux
-                renderItems(); // Met à jour l'affichage
-                
-            } catch (error) {
-                // Fallback si pas de connexion
-                document.getElementById('conversionInfo').innerHTML = '⚠️ Taux hors ligne utilisés';
-                updateConversionInfo();
-            }
-        }
-
-        function updateConversionInfo() {
-            const info = document.getElementById('conversionInfo');
-            const currentCurrency = currency;
-            // 1 unité locale = X EUR
-            const eurEquivalent = convertToEuros(1, currentCurrency);
+            setInputValue('productName', '');
+            setInputValue('vendor', '');
+            setInputValue('quantity', '1');
+            setInputValue('unitPrice', '');
+            setInputValue('payment', 'Espèces');
             
-            info.style.display = 'block';
-            info.innerHTML = `💱 1 ${currentCurrency} ≈ ${eurEquivalent.toFixed(4)} EUR<br><small>💶 Taux mis à jour automatiquement</small>`;
+            currentPhotos = [];
+            updatePhotoDisplay();
+            editingItemId = null;
+            
+            const addBtn = document.getElementById('addBtn');
+            if (addBtn) addBtn.textContent = '➕ Ajouter à la liste';
         }
 
-        function exportToCloud() {
+        function saveData() {
+            try {
+                localStorage.setItem('marketItems', JSON.stringify(items));
+                localStorage.setItem('selectedCurrency', currency);
+                localStorage.setItem('userName', userName);
+            } catch (error) {
+                console.error('Erreur sauvegarde:', error);
+            }
+        }
+
+        function exportData() {
             try {
                 const data = {
                     items: items,
-                    products: Array.from(products),
-                    vendors: Array.from(vendors),
+                    userName: userName,
                     timestamp: new Date().toISOString()
                 };
                 
@@ -937,16 +799,17 @@
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `marche-backup-${new Date().toISOString().split('T')[0]}.json`;
+                a.download = `marche-${userName}-${new Date().toISOString().split('T')[0]}.json`;
                 a.click();
                 
-                document.getElementById('syncStatus').textContent = `Sauvegardé: ${new Date().toLocaleString()}`;
+                const syncStatus = document.getElementById('syncStatus');
+                if (syncStatus) syncStatus.textContent = `Sauvegardé: ${new Date().toLocaleString()}`;
             } catch (error) {
-                alert('Erreur lors de l\'export: ' + error.message);
+                alert('Erreur export: ' + error.message);
             }
         }
 
-        function importFromCloud() {
+        function importData() {
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = '.json';
@@ -958,23 +821,17 @@
                         try {
                             const data = JSON.parse(e.target.result);
                             
-                            if (confirm(`Importer ${data.items?.length || 0} articles de ${data.userName || 'utilisateur inconnu'} ?\n\nCela va FUSIONNER avec vos données actuelles.`)) {
-                                // Fusion intelligente : éviter les doublons d'ID
-                                const existingIds = new Set(items.map(item => item.id));
-                                const newItems = (data.items || []).filter(item => !existingIds.has(item.id));
-                                
-                                items = [...items, ...newItems];
-                                products = new Set([...products, ...(data.products || [])]);
-                                vendors = new Set([...vendors, ...(data.vendors || [])]);
-                                
+                            if (confirm(`Importer ${data.items?.length || 0} articles ?`)) {
+                                items = data.items || [];
                                 saveData();
                                 renderItems();
                                 updateTotal();
                                 
-                                document.getElementById('syncStatus').textContent = `Importé ${newItems.length} nouveaux articles: ${new Date().toLocaleString()}`;
+                                const syncStatus = document.getElementById('syncStatus');
+                                if (syncStatus) syncStatus.textContent = `Importé: ${new Date().toLocaleString()}`;
                             }
                         } catch (error) {
-                            alert('Erreur lors de l\'import du fichier');
+                            alert('Erreur import: fichier invalide');
                         }
                     };
                     reader.readAsText(file);
