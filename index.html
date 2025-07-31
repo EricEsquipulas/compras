@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste d'Achats Marché</title>
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Marché App">
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTGlzdGUgZCdBY2hhdHMgTWFyY2jDqSIsInNob3J0X25hbWUiOiJNYXJjaMOpIEFwcCIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMjU2M2ViIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0F4TWpnZ01USTRJajQ4Y21WamRDQjNhV1IwYUQwaU1USTRMZ1I0UjBGOWRERnRaRkp2YWpWclQyaFlaMDFzY0V4WGJsSlVkMmg0Um1KemREbE9jbkEyWFM4cFF6bFlUMDgyU25wRmJYQjZjSGxoU0RWT1pVWktTbVF6UTI5QmR6VTZhRTFCYXpoaE0xVk1lV3d5YnpkSlVWQTNPVlZWU0d4WVdDNURia1p4TnpjeVdubHhUbFJZV0doeFIzZHlSalJ6UW1oNWJWTjNRalphTUZkWWNGQklNSEJ2YlZOa1RUSk9hM1JUTUhKNlIwdEJhakEzWVMwelEydE1OVzFGZFhneVVETlNSRUZCU0dkQlFXWTJOQ0k4TDNKbFkzUStQSEJoZEdnZ1pEMGlUVEk1TGpjZ01UQmpNQzR4TWpFdExUQnNORFkzTFZNeE1TOWpNUzQzTWpNdE1pNDRNemd0TnkwNExqa3hjeUE0TFRoek5TNHhNelF0TlM0eE16UWdOUzB4TWk0M01UWWdOUzB4TWk0M01UWnpMVFV0TlM0eE16UXROUzB4TWk0M01UWWdOUzB4TWk0M01UWXRNalV1TlMwNExpazFZeTB3TGpFeU1TMDROUzB4TUMweE5DTWlJR1pwYkd3OUlpTjNhR2wwWlNJdlBqeHdZWFJvSUdROUlrMDBOeTQ1SURZNUxqVmpMUzR4UkRBdExqSXRMakU0TFRJZ0xqVmpMUzR6TGpJeUxTNHhNelF1TmpndU56ZzNMalEwTlNBeElDNHhNalF1TlM0NU5EQXVNalkxSURGek5pMDJMamsxTFM0d01UZ3RPRE0zTGpBNE55MHhOUzQyTkRVM01pMHhOUzQyTkRVM01pNHdPRGN0T0RFeU5pNDBOelF0TGpBNU16QnpMVEl1TkRreExUSTVMakEzTmpBdE1qWXVNRFl3TFMwdU1qUTNMVGc0TGpBNE5EdHRNak1nTWpRdU9FTTNOeTQyTWpJZ01qa3VOVGNnT0RZdE1qUWdPRFlnT0RaRE9EWWdPRE15TGpJdE16SXVOamtnTnk0eE5TMDRNU0E0TURCamEyTTBPV2MwTmpGbElqczhjR0YwYUNCa1BTSk5PVE11TXpnMUlEZzNMalE0TjJNeExqZ3lNaTQyTVMwdU16UTVJRGMwTkM0eE1EWTFPMFJ6SUc1QklHOGdRU3QzY2k1NFFVSmhZMVIyVG1jMlRsRXJOMUZRZFdoeWQwVmtWRUl5VkVVeGNtOTViU0l2UGp3dmMzWm5QZz09IiwidHlwZSI6ImltYWdlL3N2Zyt4bWwiLCJzaXplcyI6ImFueSJ9XX0=">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .total-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .form-section {
+            padding: 20px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .form-group {
+            flex: 1;
+            position: relative;
+        }
+
+        .form-group.small {
+            flex: 0.7;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .photo-section {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .photo-preview {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .photo-preview:hover {
+            border-color: #2563eb;
+            background: #f1f5f9;
+        }
+
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .photo-icon {
+            color: #94a3b8;
+            font-size: 2rem;
+        }
+
+        #photoInput {
+            display: none;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .items-list {
+            padding: 20px;
+        }
+
+        .item-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #2563eb;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 1.1rem;
+        }
+
+        .item-total {
+            font-weight: bold;
+            color: #059669;
+            font-size: 1.1rem;
+        }
+
+        .item-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .item-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            float: right;
+            margin-left: 10px;
+        }
+
+        .autocomplete-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0 0 8px 8px;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .suggestion-item {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.2s;
+        }
+
+        .suggestion-item:hover {
+            background: #f8fafc;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        .summary-section {
+            background: #f1f5f9;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .summary-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .vendor-summary {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .payment-method {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛒 Liste d'Achats Marché</h1>
+            <div class="total-badge">
+                Total: <span id="grandTotal">0,00 €</span>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <form id="itemForm">
+                <div class="photo-section">
+                    <div class="photo-preview" onclick="document.getElementById('photoInput').click()">
+                        <span class="photo-icon" id="photoIcon">📷</span>
+                        <img id="photoPreview" style="display: none;">
+                    </div>
+                    <input type="file" id="photoInput" accept="image/*" capture="environment">
+                    <small style="color: #6b7280;">Touchez pour prendre une photo</small>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productName">Produit</label>
+                        <input type="text" id="productName" placeholder="Nom du produit" autocomplete="off" required>
+                        <div class="autocomplete-suggestions" id="productSuggestions"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vendor">Fournisseur</label>
+                        <input type="text" id="vendor" placeholder="Nom du vendeur" autocomplete="off" required>
+                        <div class="autocomplete-suggestions" id="vendorSuggestions"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group small">
+                        <label for="quantity">Quantité</label>
+                        <input type="number" id="quantity" step="0.01" min="0.01" placeholder="1" required>
+                    </div>
+                    <div class="form-group small">
+                        <label for="unitPrice">Prix unitaire (€)</label>
+                        <input type="number" id="unitPrice" step="0.01" min="0" placeholder="0,00" required>
+                    </div>
+                    <div class="form-group small">
+                        <label for="payment">Paiement</label>
+                        <select id="payment" required>
+                            <option value="">Mode</option>
+                            <option value="Espèces">Espèces</option>
+                            <option value="Carte">Carte</option>
+                            <option value="Chèque">Chèque</option>
+                            <option value="Virement">Virement</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">➕ Ajouter à la liste</button>
+            </form>
+        </div>
+
+        <div class="items-list" id="itemsList">
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">🛍️</div>
+                <p>Aucun article pour le moment</p>
+                <p>Commencez à ajouter vos achats !</p>
+            </div>
+        </div>
+
+        <div class="summary-section" id="summarySection" style="display: none;">
+            <div class="summary-title">📊 Récapitulatif par fournisseur</div>
+            <div id="vendorSummary"></div>
+        </div>
+    </div>
+
+    <script>
+        class MarketShoppingApp {
+            constructor() {
+                this.items = JSON.parse(localStorage.getItem('marketItems') || '[]');
+                this.products = new Set(JSON.parse(localStorage.getItem('knownProducts') || '[]'));
+                this.vendors = new Set(JSON.parse(localStorage.getItem('knownVendors') || '[]'));
+                this.currentPhoto = null;
+                
+                this.initEventListeners();
+                this.renderItems();
+                this.updateTotal();
+            }
+
+            initEventListeners() {
+                document.getElementById('itemForm').addEventListener('submit', (e) => this.addItem(e));
+                document.getElementById('photoInput').addEventListener('change', (e) => this.handlePhoto(e));
+                
+                // Autocomplete pour produits
+                const productInput = document.getElementById('productName');
+                productInput.addEventListener('input', (e) => this.showProductSuggestions(e.target.value));
+                productInput.addEventListener('blur', () => setTimeout(() => this.hideProductSuggestions(), 200));
+                
+                // Autocomplete pour fournisseurs
+                const vendorInput = document.getElementById('vendor');
+                vendorInput.addEventListener('input', (e) => this.showVendorSuggestions(e.target.value));
+                vendorInput.addEventListener('blur', () => setTimeout(() => this.hideVendorSuggestions(), 200));
+                
+                // Calcul automatique du total
+                document.getElementById('quantity').addEventListener('input', this.updatePreviewTotal);
+                document.getElementById('unitPrice').addEventListener('input', this.updatePreviewTotal);
+            }
+
+            handlePhoto(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.currentPhoto = e.target.result;
+                        const preview = document.getElementById('photoPreview');
+                        const icon = document.getElementById('photoIcon');
+                        
+                        preview.src = this.currentPhoto;
+                        preview.style.display = 'block';
+                        icon.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            showProductSuggestions(value) {
+                const suggestions = document.getElementById('productSuggestions');
+                if (value.length < 2) {
+                    suggestions.style.display = 'none';
+                    return;
+                }
+
+                const matches = Array.from(this.products).filter(product => 
+                    product.toLowerCase().includes(value.toLowerCase())
+                );
+
+                if (matches.length === 0) {
+                    suggestions.style.display = 'none';
+                    return;
+                }
+
+                suggestions.innerHTML = matches.map(product => 
+                    `<div class="suggestion-item" onclick="this.selectProduct('${product}')">${product}</div>`
+                ).join('');
+                suggestions.style.display = 'block';
+            }
+
+            showVendorSuggestions(value) {
+                const suggestions = document.getElementById('vendorSuggestions');
+                if (value.length < 2) {
+                    suggestions.style.display = 'none';
+                    return;
+                }
+
+                const matches = Array.from(this.vendors).filter(vendor => 
+                    vendor.toLowerCase().includes(value.toLowerCase())
+                );
+
+                if (matches.length === 0) {
+                    suggestions.style.display = 'none';
+                    return;
+                }
+
+                suggestions.innerHTML = matches.map(vendor => 
+                    `<div class="suggestion-item" onclick="app.selectVendor('${vendor}')">${vendor}</div>`
+                ).join('');
+                suggestions.style.display = 'block';
+            }
+
+            selectProduct(product) {
+                document.getElementById('productName').value = product;
+                this.hideProductSuggestions();
+            }
+
+            selectVendor(vendor) {
+                document.getElementById('vendor').value = vendor;
+                this.hideVendorSuggestions();
+            }
+
+            hideProductSuggestions() {
+                document.getElementById('productSuggestions').style.display = 'none';
+            }
+
+            hideVendorSuggestions() {
+                document.getElementById('vendorSuggestions').style.display = 'none';
+            }
+
+            addItem(event) {
+                event.preventDefault();
+                
+                const formData = new FormData(event.target);
+                const productName = document.getElementById('productName').value;
+                const vendor = document.getElementById('vendor').value;
+                const quantity = parseFloat(document.getElementById('quantity').value);
+                const unitPrice = parseFloat(document.getElementById('unitPrice').value);
+                const payment = document.getElementById('payment').value;
+                
+                const total = quantity * unitPrice;
+                
+                const item = {
+                    id: Date.now(),
+                    productName,
+                    vendor,
+                    quantity,
+                    unitPrice,
+                    total,
+                    payment,
+                    photo: this.currentPhoto,
+                    timestamp: new Date().toISOString()
+                };
+
+                this.items.push(item);
+                this.products.add(productName);
+                this.vendors.add(vendor);
+                
+                this.saveData();
+                this.renderItems();
+                this.updateTotal();
+                this.resetForm();
+            }
+
+            deleteItem(id) {
+                this.items = this.items.filter(item => item.id !== id);
+                this.saveData();
+                this.renderItems();
+                this.updateTotal();
+            }
+
+            renderItems() {
+                const itemsList = document.getElementById('itemsList');
+                const emptyState = document.getElementById('emptyState');
+                
+                if (this.items.length === 0) {
+                    emptyState.style.display = 'block';
+                    document.getElementById('summarySection').style.display = 'none';
+                    return;
+                }
+                
+                emptyState.style.display = 'none';
+                document.getElementById('summarySection').style.display = 'block';
+                
+                const itemsHTML = this.items.map(item => `
+                    <div class="item-card">
+                        ${item.photo ? `<img src="${item.photo}" class="item-photo" alt="${item.productName}">` : ''}
+                        <div class="item-header">
+                            <div class="item-name">${item.productName}</div>
+                            <div class="item-total">${item.total.toFixed(2)} €</div>
+                        </div>
+                        <div class="item-details">
+                            <div><strong>Fournisseur:</strong> ${item.vendor}</div>
+                            <div><strong>Quantité:</strong> ${item.quantity}</div>
+                            <div><strong>Prix unitaire:</strong> ${item.unitPrice.toFixed(2)} €</div>
+                            <div><strong>Paiement:</strong> ${item.payment}</div>
+                        </div>
+                        <button class="delete-btn" onclick="app.deleteItem(${item.id})">🗑️ Supprimer</button>
+                    </div>
+                `).join('');
+                
+                itemsList.innerHTML = itemsHTML;
+                this.renderSummary();
+            }
+
+            renderSummary() {
+                const vendorTotals = {};
+                const vendorPayments = {};
+                
+                this.items.forEach(item => {
+                    if (!vendorTotals[item.vendor]) {
+                        vendorTotals[item.vendor] = 0;
+                        vendorPayments[item.vendor] = new Set();
+                    }
+                    vendorTotals[item.vendor] += item.total;
+                    vendorPayments[item.vendor].add(item.payment);
+                });
+                
+                const summaryHTML = Object.entries(vendorTotals).map(([vendor, total]) => `
+                    <div class="vendor-summary">
+                        <div>
+                            <strong>${vendor}</strong>
+                            <div class="payment-methods">
+                                ${Array.from(vendorPayments[vendor]).map(payment => 
+                                    `<span class="payment-method">${payment}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                        <div><strong>${total.toFixed(2)} €</strong></div>
+                    </div>
+                `).join('');
+                
+                document.getElementById('vendorSummary').innerHTML = summaryHTML;
+            }
+
+            updateTotal() {
+                const total = this.items.reduce((sum, item) => sum + item.total, 0);
+                document.getElementById('grandTotal').textContent = `${total.toFixed(2)} €`;
+            }
+
+            resetForm() {
+                document.getElementById('itemForm').reset();
+                document.getElementById('photoPreview').style.display = 'none';
+                document.getElementById('photoIcon').style.display = 'block';
+                this.currentPhoto = null;
+            }
+
+            saveData() {
+                localStorage.setItem('marketItems', JSON.stringify(this.items));
+                localStorage.setItem('knownProducts', JSON.stringify(Array.from(this.products)));
+                localStorage.setItem('knownVendors', JSON.stringify(Array.from(this.vendors)));
+            }
+        }
+
+        // Initialisation de l'app
+        const app = new MarketShoppingApp();
+
+        // Service Worker pour fonctionnement hors ligne
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = `
+                    const CACHE_NAME = 'market-app-v1';
+                    const urlsToCache = ['/'];
+                    
+                    self.addEventListener('install', event => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(cache => cache.addAll(urlsToCache))
+                        );
+                    });
+                    
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(response => response || fetch(event.request))
+                        );
+                    });
+                `;
+                
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl)
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>
