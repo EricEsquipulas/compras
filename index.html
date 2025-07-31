@@ -8,7 +8,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Marché App">
-    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTGlzdGUgZCdBY2hhdHMgTWFyY2jDqSIsInNob3J0X25hbWUiOiJNYXJjaMOpIEFwcCIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMjU2M2ViIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0F4TWpnZ01USTRJajQ4Y21WamRDQjNhV1IwYUQwaU1USTRMZ1I0UjBGOWRERnRaRkp2YWpWclQyaFlaMDFzY0V4WGJsSlVkMmg0Um1KemREbE9jbkEyWFM4cFF6bFlUMDgyU25wRmJYQjZjSGxoU0RWT1pVWktTbVF6UTI5QmR6VTZhRTFCYXpoaE0xVk1lV3d5YnpkSlVWQTNPVlZWU0d4WVdDNURia1p4TnpjeVdubHhUbFJZV0doeFIzZHlSalJ6UW1oNWJWTjNRalphTUZkWWNGQklNSEJ2YlZOa1RUSk9hM1JUTUhKNlIwdEJhakEzWVMwelEydE1OVzFGZFhneVVETlNSRUZCU0dkQlFXWTJOQ0k4TDNKbFkzUStQSEJoZEdnZ1pEMGlUVEk1TGpjZ01UQmpNQzR4TWpFdExUQnNORFkzTFZNeE1TOWpNUzQzTWpNdE1pNDRNemd0TnkwNExqa3hjeUE0TFRoek5TNHhNelF0TlM0eE16UWdOUzB4TWk0M01UWWdOUzB4TWk0M01UWnpMVFV0TlM0eE16UXROUzB4TWk0M01UWWdOUzB4TWk0M01UWXRNalV1TlMwNExpazFZeTB3TGpFeU1TMDROUzB4TUMweE5DTWlJR1pwYkd3OUlpTjNhR2wwWlNJdlBqeHdZWFJvSUdROUlrMDBOeTQ1SURZNUxqVmpMUzR4UkRBdExqSXRMakU0TFRJZ0xqVmpMUzR6TGpJeUxTNHhNelF1TmpndU56ZzNMalEwTlNBeElDNHhNalF1TlM0NU5EQXVNalkxSURGek5pMDJMamsxTFM0d01UZ3RPRE0zTGpBNE55MHhOUzQyTkRVM01pMHhOUzQyTkRVM01pNHdPRGN0T0RFeU5pNDBOelF0TGpBNU16QnpMVEl1TkRreExUSTVMakEzTmpBdE1qWXVNRFl3TFMwdU1qUTNMVGc0TGpBNE5EdHRNak1nTWpRdU9FTTNOeTQyTWpJZ01qa3VOVGNnT0RZdE1qUWdPRFlnT0RaRE9EWWdPRE15TGpJdE16SXVOamtnTnk0eE5TMDRNU0E0TURCamEyTTBPV2MwTmpGbElqczhjR0YwYUNCa1BTSk5PVE11TXpnMUlEZzNMalE0TjJNeExqZ3lNaTQyTVMwdU16UTVJRGMwTkM0eE1EWTFPMFJ6SUc1QklHOGdRU3QzY2k1NFFVSmhZMVIyVG1jMlRsRXJOMUZRZFdoeWQwVmtWRUl5VkVVeGNtOTViU0l2UGp3dmMzWm5QZz09IiwidHlwZSI6ImltYWdlL3N2Zyt4bWwiLCJzaXplcyI6ImFueSJ9XX0=">
     <style>
         * {
             margin: 0;
@@ -57,47 +56,6 @@
             padding: 8px 12px;
             border-radius: 6px;
             font-size: 0.9rem;
-        }
-
-        .currency-selector select option {
-            background: #2563eb;
-            color: white;
-        }
-
-        .sync-section {
-            background: #e0f2fe;
-            border: 1px solid #0284c7;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px;
-            text-align: center;
-        }
-
-        .sync-btn {
-            background: linear-gradient(135deg, #0284c7, #0369a1);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin: 5px;
-            font-size: 0.9rem;
-        }
-
-        .sync-status {
-            margin-top: 10px;
-            font-size: 0.8rem;
-            color: #0369a1;
-        }
-
-        .conversion-info {
-            background: #f0f9ff;
-            border: 1px solid #0ea5e9;
-            border-radius: 6px;
-            padding: 8px;
-            margin-top: 10px;
-            font-size: 0.8rem;
-            color: #0369a1;
         }
 
         .total-badge {
@@ -212,6 +170,42 @@
             transform: translateY(0);
         }
 
+        .conversion-info {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #0369a1;
+        }
+
+        .sync-section {
+            background: #e0f2fe;
+            border: 1px solid #0284c7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .sync-btn {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+
+        .sync-status {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #0369a1;
+        }
+
         .items-list {
             padding: 20px;
         }
@@ -273,6 +267,7 @@
             overflow-y: auto;
             z-index: 10;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: none;
         }
 
         .suggestion-item {
@@ -284,10 +279,6 @@
 
         .suggestion-item:hover {
             background: #f8fafc;
-        }
-
-        .suggestion-item:last-child {
-            border-bottom: none;
         }
 
         .edit-btn {
@@ -367,7 +358,7 @@
         <div class="header">
             <h1>🛒 Liste d'Achats Marché</h1>
             <div class="currency-selector">
-                <select id="currencySelect">
+                <select id="currencySelect" onchange="changeCurrency(this.value)">
                     <option value="GTQ">GTQ (Quetzal)</option>
                     <option value="MXN">MXN (Peso)</option>
                 </select>
@@ -378,64 +369,62 @@
         </div>
 
         <div class="form-section">
-            <form id="itemForm">
-                <div class="photo-section">
-                    <div class="photo-preview" onclick="document.getElementById('photoInput').click()">
-                        <span class="photo-icon" id="photoIcon">📷</span>
-                        <img id="photoPreview" style="display: none;">
-                    </div>
-                    <input type="file" id="photoInput" accept="image/*" capture="environment">
-                    <small style="color: #6b7280;">Touchez pour prendre une photo</small>
+            <div class="photo-section">
+                <div class="photo-preview" onclick="document.getElementById('photoInput').click()">
+                    <span class="photo-icon" id="photoIcon">📷</span>
+                    <img id="photoPreview" style="display: none;">
                 </div>
+                <input type="file" id="photoInput" accept="image/*" capture="environment" onchange="handlePhoto(event)">
+                <small style="color: #6b7280;">Touchez pour prendre une photo</small>
+            </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="productName">Produit</label>
-                        <input type="text" id="productName" placeholder="Nom du produit" autocomplete="off" required>
-                        <div class="autocomplete-suggestions" id="productSuggestions"></div>
-                    </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="productName">Produit</label>
+                    <input type="text" id="productName" placeholder="Nom du produit" autocomplete="off" oninput="showProductSuggestions(this.value)" onblur="setTimeout(hideProductSuggestions, 200)">
+                    <div class="autocomplete-suggestions" id="productSuggestions"></div>
                 </div>
+            </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="vendor">Fournisseur</label>
-                        <input type="text" id="vendor" placeholder="Nom du vendeur" autocomplete="off" required>
-                        <div class="autocomplete-suggestions" id="vendorSuggestions"></div>
-                    </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="vendor">Fournisseur</label>
+                    <input type="text" id="vendor" placeholder="Nom du vendeur" autocomplete="off" oninput="showVendorSuggestions(this.value)" onblur="setTimeout(hideVendorSuggestions, 200)">
+                    <div class="autocomplete-suggestions" id="vendorSuggestions"></div>
                 </div>
+            </div>
 
-                <div class="form-row">
-                    <div class="form-group small">
-                        <label for="quantity">Quantité</label>
-                        <input type="number" id="quantity" step="0.01" min="0.01" placeholder="1" required>
-                    </div>
-                    <div class="form-group small">
-                        <label for="unitPrice">Prix unitaire</label>
-                        <input type="number" id="unitPrice" step="0.01" min="0" placeholder="0,00" required>
-                    </div>
-                    <div class="form-group small">
-                        <label for="payment">Paiement</label>
-                        <select id="payment" required>
-                            <option value="Espèces" selected>Espèces</option>
-                            <option value="Carte">Carte</option>
-                            <option value="Chèque">Chèque</option>
-                            <option value="Virement">Virement</option>
-                        </select>
-                    </div>
+            <div class="form-row">
+                <div class="form-group small">
+                    <label for="quantity">Quantité</label>
+                    <input type="number" id="quantity" step="1" min="0.01" placeholder="1">
                 </div>
+                <div class="form-group small">
+                    <label for="unitPrice">Prix unitaire</label>
+                    <input type="number" id="unitPrice" step="0.01" min="0" placeholder="0,00">
+                </div>
+                <div class="form-group small">
+                    <label for="payment">Paiement</label>
+                    <select id="payment">
+                        <option value="Espèces" selected>Espèces</option>
+                        <option value="Carte">Carte</option>
+                        <option value="Chèque">Chèque</option>
+                        <option value="Virement">Virement</option>
+                    </select>
+                </div>
+            </div>
 
-                <button type="submit" class="btn">➕ Ajouter à la liste</button>
-                
-                <div class="conversion-info" id="conversionInfo" style="display: none;">
-                    💱 Taux de change en cours de chargement...
-                </div>
-            </form>
+            <button type="button" class="btn" id="addBtn" onclick="addItem()">➕ Ajouter à la liste</button>
+            
+            <div class="conversion-info" id="conversionInfo" style="display: none;">
+                💱 Taux de change en cours de chargement...
+            </div>
         </div>
 
         <div class="sync-section">
             <h3>☁️ Synchronisation</h3>
-            <button class="sync-btn" onclick="app.exportToCloud()">📤 Sauvegarder en ligne</button>
-            <button class="sync-btn" onclick="app.importFromCloud()">📥 Récupérer depuis le cloud</button>
+            <button class="sync-btn" onclick="exportToCloud()">📤 Sauvegarder</button>
+            <button class="sync-btn" onclick="importFromCloud()">📥 Récupérer</button>
             <div class="sync-status" id="syncStatus">Dernière sync: jamais</div>
         </div>
 
@@ -454,206 +443,87 @@
     </div>
 
     <script>
-        class MarketShoppingApp {
-            constructor() {
-                this.items = JSON.parse(localStorage.getItem('marketItems') || '[]');
-                this.products = new Set(JSON.parse(localStorage.getItem('knownProducts') || '[]'));
-                this.vendors = new Set(JSON.parse(localStorage.getItem('knownVendors') || '[]'));
-                this.currentPhoto = null;
-                this.editingItemId = null;
-                this.currency = localStorage.getItem('selectedCurrency') || 'GTQ';
-                this.exchangeRates = JSON.parse(localStorage.getItem('exchangeRates') || '{}');
-                this.lastRateUpdate = localStorage.getItem('lastRateUpdate') || null;
-                
-                this.initEventListeners();
-                this.renderItems();
-                this.updateTotal();
-                this.loadExchangeRates();
-                document.getElementById('currencySelect').value = this.currency;
+        // Variables globales
+        let items = [];
+        let products = new Set();
+        let vendors = new Set();
+        let currentPhoto = null;
+        let editingItemId = null;
+        let currency = 'GTQ';
+        let exchangeRates = { GTQ: 1, MXN: 2.33, USD: 0.13 };
+
+        // Initialisation
+        function init() {
+            loadData();
+            loadExchangeRates();
+            renderItems();
+            updateTotal();
+            document.getElementById('currencySelect').value = currency;
+            document.getElementById('totalCurrency').textContent = currency;
+        }
+
+        function loadData() {
+            try {
+                items = JSON.parse(localStorage.getItem('marketItems') || '[]');
+                products = new Set(JSON.parse(localStorage.getItem('knownProducts') || '[]'));
+                vendors = new Set(JSON.parse(localStorage.getItem('knownVendors') || '[]'));
+                currency = localStorage.getItem('selectedCurrency') || 'GTQ';
+                exchangeRates = JSON.parse(localStorage.getItem('exchangeRates') || '{"GTQ": 1, "MXN": 2.33}');
+            } catch (error) {
+                console.error('Erreur chargement données:', error);
             }
+        }
 
-            initEventListeners() {
-                document.getElementById('itemForm').addEventListener('submit', (e) => this.addItem(e));
-                document.getElementById('photoInput').addEventListener('change', (e) => this.handlePhoto(e));
-                document.getElementById('currencySelect').addEventListener('change', (e) => this.changeCurrency(e.target.value));
-                
-                // Autocomplete pour produits
-                const productInput = document.getElementById('productName');
-                productInput.addEventListener('input', (e) => this.showProductSuggestions(e.target.value));
-                productInput.addEventListener('blur', () => setTimeout(() => this.hideProductSuggestions(), 200));
-                
-                // Autocomplete pour fournisseurs
-                const vendorInput = document.getElementById('vendor');
-                vendorInput.addEventListener('input', (e) => this.showVendorSuggestions(e.target.value));
-                vendorInput.addEventListener('blur', () => setTimeout(() => this.hideVendorSuggestions(), 200));
-                
-                // Calcul automatique du total
-                document.getElementById('quantity').addEventListener('input', this.updatePreviewTotal);
-                document.getElementById('unitPrice').addEventListener('input', this.updatePreviewTotal);
+        function saveData() {
+            try {
+                localStorage.setItem('marketItems', JSON.stringify(items));
+                localStorage.setItem('knownProducts', JSON.stringify(Array.from(products)));
+                localStorage.setItem('knownVendors', JSON.stringify(Array.from(vendors)));
+                localStorage.setItem('selectedCurrency', currency);
+                localStorage.setItem('exchangeRates', JSON.stringify(exchangeRates));
+            } catch (error) {
+                console.error('Erreur sauvegarde:', error);
             }
+        }
 
-            async loadExchangeRates() {
-                try {
-                    // Vérifier si les taux sont récents (moins de 4h)
-                    const now = Date.now();
-                    const lastUpdate = this.lastRateUpdate ? parseInt(this.lastRateUpdate) : 0;
-                    const fourHours = 4 * 60 * 60 * 1000;
-                    
-                    if (now - lastUpdate < fourHours && Object.keys(this.exchangeRates).length > 0) {
-                        this.updateConversionInfo();
-                        return;
-                    }
-
-                    document.getElementById('conversionInfo').style.display = 'block';
-                    document.getElementById('conversionInfo').innerHTML = '💱 Mise à jour des taux de change...';
-
-                    // API gratuite pour les taux de change
-                    const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
-                    const data = await response.json();
-                    
-                    this.exchangeRates = {
-                        GTQ: data.rates.GTQ || 7.8,
-                        MXN: data.rates.MXN || 18.2,
-                        USD: 1
-                    };
-                    
-                    this.lastRateUpdate = now.toString();
-                    localStorage.setItem('exchangeRates', JSON.stringify(this.exchangeRates));
-                    localStorage.setItem('lastRateUpdate', this.lastRateUpdate);
-                    
-                    this.updateConversionInfo();
-                } catch (error) {
-                    // Taux de fallback si pas de connexion
-                    if (Object.keys(this.exchangeRates).length === 0) {
-                        this.exchangeRates = { GTQ: 7.8, MXN: 18.2, USD: 1 };
-                    }
-                    document.getElementById('conversionInfo').innerHTML = '⚠️ Taux hors ligne utilisés';
-                }
-            }
-
-            updateConversionInfo() {
-                const info = document.getElementById('conversionInfo');
-                const currentCurrency = this.currency;
-                const otherCurrency = currentCurrency === 'GTQ' ? 'MXN' : 'GTQ';
-                const rate = this.exchangeRates[otherCurrency] / this.exchangeRates[currentCurrency];
-                
-                info.style.display = 'block';
-                info.innerHTML = `💱 1 ${currentCurrency} = ${rate.toFixed(3)} ${otherCurrency}`;
-            }
-
-            changeCurrency(newCurrency) {
-                this.currency = newCurrency;
-                localStorage.setItem('selectedCurrency', newCurrency);
-                document.getElementById('totalCurrency').textContent = newCurrency;
-                this.updateTotal();
-                this.updateConversionInfo();
-            }
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        this.currentPhoto = e.target.result;
-                        const preview = document.getElementById('photoPreview');
-                        const icon = document.getElementById('photoIcon');
-                        
-                        preview.src = this.currentPhoto;
-                        preview.style.display = 'block';
-                        icon.style.display = 'none';
-                    };
-                    reader.readAsDataURL(file);
-                }
-            }
-
-            showProductSuggestions(value) {
-                const suggestions = document.getElementById('productSuggestions');
-                if (value.length < 2) {
-                    suggestions.style.display = 'none';
-                    return;
-                }
-
-                const matches = Array.from(this.products).filter(product => 
-                    product.toLowerCase().includes(value.toLowerCase())
-                );
-
-                if (matches.length === 0) {
-                    suggestions.style.display = 'none';
-                    return;
-                }
-
-                suggestions.innerHTML = matches.map(product => 
-                    `<div class="suggestion-item" onclick="this.selectProduct('${product}')">${product}</div>`
-                ).join('');
-                suggestions.style.display = 'block';
-            }
-
-            showVendorSuggestions(value) {
-                const suggestions = document.getElementById('vendorSuggestions');
-                if (value.length < 2) {
-                    suggestions.style.display = 'none';
-                    return;
-                }
-
-                const matches = Array.from(this.vendors).filter(vendor => 
-                    vendor.toLowerCase().includes(value.toLowerCase())
-                );
-
-                if (matches.length === 0) {
-                    suggestions.style.display = 'none';
-                    return;
-                }
-
-                suggestions.innerHTML = matches.map(vendor => 
-                    `<div class="suggestion-item" onclick="app.selectVendor('${vendor}')">${vendor}</div>`
-                ).join('');
-                suggestions.style.display = 'block';
-            }
-
-            selectProduct(product) {
-                document.getElementById('productName').value = product;
-                this.hideProductSuggestions();
-            }
-
-            selectVendor(vendor) {
-                document.getElementById('vendor').value = vendor;
-                this.hideVendorSuggestions();
-            }
-
-            hideProductSuggestions() {
-                document.getElementById('productSuggestions').style.display = 'none';
-            }
-
-            hideVendorSuggestions() {
-                document.getElementById('vendorSuggestions').style.display = 'none';
-            }
-
-            addItem(event) {
-                event.preventDefault();
-                
-                const productName = document.getElementById('productName').value;
-                const vendor = document.getElementById('vendor').value;
-                const quantity = parseFloat(document.getElementById('quantity').value);
-                const unitPrice = parseFloat(document.getElementById('unitPrice').value);
+        function addItem() {
+            try {
+                const productName = document.getElementById('productName').value.trim();
+                const vendor = document.getElementById('vendor').value.trim();
+                const quantity = parseFloat(document.getElementById('quantity').value) || 1;
+                const unitPrice = parseFloat(document.getElementById('unitPrice').value) || 0;
                 const payment = document.getElementById('payment').value;
-                
+
+                if (!productName) {
+                    alert('Veuillez saisir un nom de produit');
+                    return;
+                }
+
+                if (!vendor) {
+                    alert('Veuillez saisir un nom de vendeur');
+                    return;
+                }
+
                 const total = quantity * unitPrice;
-                
-                if (this.editingItemId) {
+
+                if (editingItemId) {
                     // Mode édition
-                    const itemIndex = this.items.findIndex(item => item.id === this.editingItemId);
+                    const itemIndex = items.findIndex(item => item.id === editingItemId);
                     if (itemIndex !== -1) {
-                        this.items[itemIndex] = {
-                            ...this.items[itemIndex],
+                        items[itemIndex] = {
+                            ...items[itemIndex],
                             productName,
                             vendor,
                             quantity,
                             unitPrice,
                             total,
                             payment,
-                            photo: this.currentPhoto || this.items[itemIndex].photo
+                            photo: currentPhoto || items[itemIndex].photo,
+                            currency: currency
                         };
                     }
-                    this.editingItemId = null;
-                    document.querySelector('.btn').textContent = '➕ Ajouter à la liste';
+                    editingItemId = null;
+                    document.getElementById('addBtn').textContent = '➕ Ajouter à la liste';
                 } else {
                     // Mode ajout
                     const item = {
@@ -664,301 +534,322 @@
                         unitPrice,
                         total,
                         payment,
-                        photo: this.currentPhoto,
+                        photo: currentPhoto,
                         timestamp: new Date().toISOString(),
-                        currency: this.currency
+                        currency: currency
                     };
-                    this.items.push(item);
+                    items.push(item);
                 }
 
-                this.products.add(productName);
-                this.vendors.add(vendor);
-                
-                this.saveData();
-                this.renderItems();
-                this.updateTotal();
-                this.resetForm();
+                products.add(productName);
+                vendors.add(vendor);
+
+                saveData();
+                renderItems();
+                updateTotal();
+                resetForm();
+
+            } catch (error) {
+                console.error('Erreur ajout item:', error);
+                alert('Erreur lors de l\'ajout de l\'article');
+            }
+        }
+
+        function editItem(id) {
+            const item = items.find(item => item.id === id);
+            if (!item) return;
+
+            document.getElementById('productName').value = item.productName;
+            document.getElementById('vendor').value = item.vendor;
+            document.getElementById('quantity').value = item.quantity;
+            document.getElementById('unitPrice').value = item.unitPrice;
+            document.getElementById('payment').value = item.payment;
+
+            if (item.photo) {
+                currentPhoto = item.photo;
+                const preview = document.getElementById('photoPreview');
+                const icon = document.getElementById('photoIcon');
+                preview.src = item.photo;
+                preview.style.display = 'block';
+                icon.style.display = 'none';
             }
 
-            editItem(id) {
-                const item = this.items.find(item => item.id === id);
-                if (!item) return;
+            editingItemId = id;
+            document.getElementById('addBtn').textContent = '✏️ Modifier l\'article';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-                // Remplir le formulaire avec les données de l'item
-                document.getElementById('productName').value = item.productName;
-                document.getElementById('vendor').value = item.vendor;
-                document.getElementById('quantity').value = item.quantity;
-                document.getElementById('unitPrice').value = item.unitPrice;
-                document.getElementById('payment').value = item.payment;
-                
-                // Gérer la photo
-                if (item.photo) {
-                    this.currentPhoto = item.photo;
+        function deleteItem(id) {
+            if (confirm('Supprimer cet article ?')) {
+                items = items.filter(item => item.id !== id);
+                saveData();
+                renderItems();
+                updateTotal();
+            }
+        }
+
+        function renderItems() {
+            const itemsList = document.getElementById('itemsList');
+            const emptyState = document.getElementById('emptyState');
+
+            if (items.length === 0) {
+                emptyState.style.display = 'block';
+                document.getElementById('summarySection').style.display = 'none';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            document.getElementById('summarySection').style.display = 'block';
+
+            const itemsHTML = items.map(item => `
+                <div class="item-card">
+                    ${item.photo ? `<img src="${item.photo}" class="item-photo" alt="${item.productName}">` : ''}
+                    <div class="item-header">
+                        <div class="item-name">${item.productName}</div>
+                        <div class="item-total">${convertToCurrentCurrency(item.total, item.currency || 'GTQ').toFixed(2)} ${currency}</div>
+                    </div>
+                    <div class="item-details">
+                        <div><strong>Fournisseur:</strong> ${item.vendor}</div>
+                        <div><strong>Quantité:</strong> ${item.quantity}</div>
+                        <div><strong>Prix unitaire:</strong> ${convertToCurrentCurrency(item.unitPrice, item.currency || 'GTQ').toFixed(2)} ${currency}</div>
+                        <div><strong>Paiement:</strong> ${item.payment}</div>
+                    </div>
+                    <button class="edit-btn" onclick="editItem(${item.id})">✏️ Modifier</button>
+                    <button class="delete-btn" onclick="deleteItem(${item.id})">🗑️ Supprimer</button>
+                </div>
+            `).join('');
+
+            itemsList.innerHTML = itemsHTML;
+            renderSummary();
+        }
+
+        function renderSummary() {
+            const vendorTotals = {};
+            const vendorPayments = {};
+
+            items.forEach(item => {
+                if (!vendorTotals[item.vendor]) {
+                    vendorTotals[item.vendor] = 0;
+                    vendorPayments[item.vendor] = new Set();
+                }
+                vendorTotals[item.vendor] += convertToCurrentCurrency(item.total, item.currency || 'GTQ');
+                vendorPayments[item.vendor].add(item.payment);
+            });
+
+            const summaryHTML = Object.entries(vendorTotals).map(([vendor, total]) => `
+                <div class="vendor-summary">
+                    <div>
+                        <strong>${vendor}</strong>
+                        <div class="payment-methods">
+                            ${Array.from(vendorPayments[vendor]).map(payment => 
+                                `<span class="payment-method">${payment}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    <div><strong>${total.toFixed(2)} ${currency}</strong></div>
+                </div>
+            `).join('');
+
+            document.getElementById('vendorSummary').innerHTML = summaryHTML;
+        }
+
+        function updateTotal() {
+            const total = items.reduce((sum, item) => {
+                return sum + convertToCurrentCurrency(item.total, item.currency || 'GTQ');
+            }, 0);
+            document.getElementById('grandTotal').textContent = total.toFixed(2);
+            document.getElementById('totalCurrency').textContent = currency;
+        }
+
+        function convertToCurrentCurrency(amount, fromCurrency) {
+            if (!fromCurrency || fromCurrency === currency) return amount;
+            const fromRate = exchangeRates[fromCurrency] || 1;
+            const toRate = exchangeRates[currency] || 1;
+            return (amount / fromRate) * toRate;
+        }
+
+        function changeCurrency(newCurrency) {
+            currency = newCurrency;
+            document.getElementById('totalCurrency').textContent = newCurrency;
+            updateTotal();
+            renderItems();
+            updateConversionInfo();
+            saveData();
+        }
+
+        function resetForm() {
+            document.getElementById('productName').value = '';
+            document.getElementById('vendor').value = '';
+            document.getElementById('quantity').value = '';
+            document.getElementById('unitPrice').value = '';
+            document.getElementById('payment').value = 'Espèces';
+            document.getElementById('photoPreview').style.display = 'none';
+            document.getElementById('photoIcon').style.display = 'block';
+            currentPhoto = null;
+            editingItemId = null;
+            document.getElementById('addBtn').textContent = '➕ Ajouter à la liste';
+        }
+
+        function handlePhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    currentPhoto = e.target.result;
                     const preview = document.getElementById('photoPreview');
                     const icon = document.getElementById('photoIcon');
-                    preview.src = item.photo;
+                    preview.src = currentPhoto;
                     preview.style.display = 'block';
                     icon.style.display = 'none';
-                }
-
-                // Passer en mode édition
-                this.editingItemId = id;
-                document.querySelector('.btn').textContent = '✏️ Modifier l\'article';
-
-                // Scroller vers le haut
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            deleteItem(id) {
-                this.items = this.items.filter(item => item.id !== id);
-                this.saveData();
-                this.renderItems();
-                this.updateTotal();
-            }
-
-            renderItems() {
-                const itemsList = document.getElementById('itemsList');
-                const emptyState = document.getElementById('emptyState');
-                
-                if (this.items.length === 0) {
-                    emptyState.style.display = 'block';
-                    document.getElementById('summarySection').style.display = 'none';
-                    return;
-                }
-                
-                emptyState.style.display = 'none';
-                document.getElementById('summarySection').style.display = 'block';
-                
-                const itemsHTML = this.items.map(item => `
-                    <div class="item-card">
-                        ${item.photo ? `<img src="${item.photo}" class="item-photo" alt="${item.productName}">` : ''}
-                        <div class="item-header">
-                            <div class="item-name">${item.productName}</div>
-                            <div class="item-total">${this.convertToCurrentCurrency(item.total, item.currency || 'GTQ').toFixed(2)} ${this.currency}</div>
-                        </div>
-                        <div class="item-details">
-                            <div><strong>Fournisseur:</strong> ${item.vendor}</div>
-                            <div><strong>Quantité:</strong> ${item.quantity}</div>
-                            <div><strong>Prix unitaire:</strong> ${this.convertToCurrentCurrency(item.unitPrice, item.currency || 'GTQ').toFixed(2)} ${this.currency}</div>
-                            <div><strong>Paiement:</strong> ${item.payment}</div>
-                        </div>
-                        <button class="edit-btn" onclick="app.editItem(${item.id})">✏️ Modifier</button>
-                        <button class="delete-btn" onclick="app.deleteItem(${item.id})">🗑️ Supprimer</button>
-                    </div>
-                `).join('');
-                
-                itemsList.innerHTML = itemsHTML;
-                this.renderSummary();
-            }
-
-            renderSummary() {
-                const vendorTotals = {};
-                const vendorPayments = {};
-                
-                this.items.forEach(item => {
-                    if (!vendorTotals[item.vendor]) {
-                        vendorTotals[item.vendor] = 0;
-                        vendorPayments[item.vendor] = new Set();
-                    }
-                    vendorTotals[item.vendor] += this.convertToCurrentCurrency(item.total, item.currency || 'GTQ');
-                    vendorPayments[item.vendor].add(item.payment);
-                });
-                
-                const summaryHTML = Object.entries(vendorTotals).map(([vendor, total]) => `
-                    <div class="vendor-summary">
-                        <div>
-                            <strong>${vendor}</strong>
-                            <div class="payment-methods">
-                                ${Array.from(vendorPayments[vendor]).map(payment => 
-                                    `<span class="payment-method">${payment}</span>`
-                                ).join('')}
-                            </div>
-                        </div>
-                        <div><strong>${total.toFixed(2)} ${this.currency}</strong></div>
-                    </div>
-                `).join('');
-                
-                document.getElementById('vendorSummary').innerHTML = summaryHTML;
-            }
-
-            convertToCurrentCurrency(amount, fromCurrency) {
-                if (!fromCurrency || fromCurrency === this.currency) return amount;
-                
-                const fromRate = this.exchangeRates[fromCurrency] || 1;
-                const toRate = this.exchangeRates[this.currency] || 1;
-                
-                return (amount / fromRate) * toRate;
-            }
-
-            updateTotal() {
-                const total = this.items.reduce((sum, item) => {
-                    return sum + this.convertToCurrentCurrency(item.total, item.currency || 'GTQ');
-                }, 0);
-                document.getElementById('grandTotal').textContent = total.toFixed(2);
-                document.getElementById('totalCurrency').textContent = this.currency;
-            }
-
-            async exportToCloud() {
-                try {
-                    const data = {
-                        items: this.items,
-                        products: Array.from(this.products),
-                        vendors: Array.from(this.vendors),
-                        timestamp: new Date().toISOString()
-                    };
-                    
-                    // Utiliser JSONBin.io comme storage gratuit
-                    const response = await fetch('https://api.jsonbin.io/v3/b', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-Master-Key': '$2a$10$FakeKeyForDemo123456789'
-                        },
-                        body: JSON.stringify(data)
-                    });
-                    
-                    if (response.ok) {
-                        const result = await response.json();
-                        localStorage.setItem('cloudBackupId', result.metadata.id);
-                        document.getElementById('syncStatus').textContent = `Sauvegardé: ${new Date().toLocaleString()}`;
-                    }
-                } catch (error) {
-                    // Fallback: export local
-                    const data = {
-                        items: this.items,
-                        products: Array.from(this.products),
-                        vendors: Array.from(this.vendors)
-                    };
-                    
-                    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = `marche-backup-${new Date().toISOString().split('T')[0]}.json`;
-                    a.click();
-                    
-                    document.getElementById('syncStatus').textContent = 'Fichier téléchargé localement';
-                }
-            }
-
-            async importFromCloud() {
-                try {
-                    const backupId = localStorage.getItem('cloudBackupId');
-                    if (!backupId) {
-                        alert('Aucune sauvegarde cloud trouvée');
-                        return;
-                    }
-                    
-                    const response = await fetch(`https://api.jsonbin.io/v3/b/${backupId}`, {
-                        headers: {
-                            'X-Master-Key': '$2a$10$FakeKeyForDemo123456789'
-                        }
-                    });
-                    
-                    if (response.ok) {
-                        const result = await response.json();
-                        const data = result.record;
-                        
-                        this.items = data.items || [];
-                        this.products = new Set(data.products || []);
-                        this.vendors = new Set(data.vendors || []);
-                        
-                        this.saveData();
-                        this.renderItems();
-                        this.updateTotal();
-                        
-                        document.getElementById('syncStatus').textContent = `Récupéré: ${new Date().toLocaleString()}`;
-                    }
-                } catch (error) {
-                    // Fallback: import file
-                    const input = document.createElement('input');
-                    input.type = 'file';
-                    input.accept = '.json';
-                    input.onchange = (e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                            const reader = new FileReader();
-                            reader.onload = (e) => {
-                                try {
-                                    const data = JSON.parse(e.target.result);
-                                    this.items = data.items || [];
-                                    this.products = new Set(data.products || []);
-                                    this.vendors = new Set(data.vendors || []);
-                                    
-                                    this.saveData();
-                                    this.renderItems();
-                                    this.updateTotal();
-                                    
-                                    document.getElementById('syncStatus').textContent = 'Fichier importé';
-                                } catch (error) {
-                                    alert('Erreur lors de l\'import du fichier');
-                                }
-                            };
-                            reader.readAsText(file);
-                        }
-                    };
-                    input.click();
-                }
-            }
-
-            updateTotal() {
-                const total = this.items.reduce((sum, item) => {
-                    return sum + this.convertToCurrentCurrency(item.total, item.currency || 'GTQ');
-                }, 0);
-                document.getElementById('grandTotal').textContent = total.toFixed(2);
-                document.getElementById('totalCurrency').textContent = this.currency;
-            }
-
-            resetForm() {
-                document.getElementById('itemForm').reset();
-                document.getElementById('photoPreview').style.display = 'none';
-                document.getElementById('photoIcon').style.display = 'block';
-                document.getElementById('payment').value = 'Espèces'; // Remettre espèces par défaut
-                this.currentPhoto = null;
-                this.editingItemId = null;
-                document.querySelector('.btn').textContent = '➕ Ajouter à la liste';
-            }
-
-            saveData() {
-                localStorage.setItem('marketItems', JSON.stringify(this.items));
-                localStorage.setItem('knownProducts', JSON.stringify(Array.from(this.products)));
-                localStorage.setItem('knownVendors', JSON.stringify(Array.from(this.vendors)));
+                };
+                reader.readAsDataURL(file);
             }
         }
 
-        // Initialisation de l'app
-        const app = new MarketShoppingApp();
+        function showProductSuggestions(value) {
+            const suggestions = document.getElementById('productSuggestions');
+            if (value.length < 2) {
+                suggestions.style.display = 'none';
+                return;
+            }
 
-        // Service Worker pour fonctionnement hors ligne
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                const swCode = `
-                    const CACHE_NAME = 'market-app-v1';
-                    const urlsToCache = ['/'];
-                    
-                    self.addEventListener('install', event => {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME)
-                                .then(cache => cache.addAll(urlsToCache))
-                        );
-                    });
-                    
-                    self.addEventListener('fetch', event => {
-                        event.respondWith(
-                            caches.match(event.request)
-                                .then(response => response || fetch(event.request))
-                        );
-                    });
-                `;
-                
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-                
-                navigator.serviceWorker.register(swUrl)
-                    .then(registration => console.log('SW registered'))
-                    .catch(error => console.log('SW registration failed'));
-            });
+            const matches = Array.from(products).filter(product => 
+                product.toLowerCase().includes(value.toLowerCase())
+            );
+
+            if (matches.length === 0) {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            suggestions.innerHTML = matches.map(product => 
+                `<div class="suggestion-item" onclick="selectProduct('${product}')">${product}</div>`
+            ).join('');
+            suggestions.style.display = 'block';
         }
+
+        function showVendorSuggestions(value) {
+            const suggestions = document.getElementById('vendorSuggestions');
+            if (value.length < 2) {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            const matches = Array.from(vendors).filter(vendor => 
+                vendor.toLowerCase().includes(value.toLowerCase())
+            );
+
+            if (matches.length === 0) {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            suggestions.innerHTML = matches.map(vendor => 
+                `<div class="suggestion-item" onclick="selectVendor('${vendor}')">${vendor}</div>`
+            ).join('');
+            suggestions.style.display = 'block';
+        }
+
+        function selectProduct(product) {
+            document.getElementById('productName').value = product;
+            hideProductSuggestions();
+        }
+
+        function selectVendor(vendor) {
+            document.getElementById('vendor').value = vendor;
+            hideVendorSuggestions();
+        }
+
+        function hideProductSuggestions() {
+            document.getElementById('productSuggestions').style.display = 'none';
+        }
+
+        function hideVendorSuggestions() {
+            document.getElementById('vendorSuggestions').style.display = 'none';
+        }
+
+        async function loadExchangeRates() {
+            try {
+                const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+                const data = await response.json();
+                
+                exchangeRates = {
+                    GTQ: data.rates.GTQ || 7.8,
+                    MXN: data.rates.MXN || 18.2,
+                    USD: 1
+                };
+                
+                localStorage.setItem('exchangeRates', JSON.stringify(exchangeRates));
+                updateConversionInfo();
+            } catch (error) {
+                document.getElementById('conversionInfo').innerHTML = '⚠️ Taux hors ligne utilisés';
+            }
+        }
+
+        function updateConversionInfo() {
+            const info = document.getElementById('conversionInfo');
+            const currentCurrency = currency;
+            const otherCurrency = currentCurrency === 'GTQ' ? 'MXN' : 'GTQ';
+            const rate = exchangeRates[otherCurrency] / exchangeRates[currentCurrency];
+            
+            info.style.display = 'block';
+            info.innerHTML = `💱 1 ${currentCurrency} = ${rate.toFixed(3)} ${otherCurrency}`;
+        }
+
+        function exportToCloud() {
+            try {
+                const data = {
+                    items: items,
+                    products: Array.from(products),
+                    vendors: Array.from(vendors),
+                    timestamp: new Date().toISOString()
+                };
+                
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `marche-backup-${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+                
+                document.getElementById('syncStatus').textContent = `Sauvegardé: ${new Date().toLocaleString()}`;
+            } catch (error) {
+                alert('Erreur lors de l\'export: ' + error.message);
+            }
+        }
+
+        function importFromCloud() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        try {
+                            const data = JSON.parse(e.target.result);
+                            items = data.items || [];
+                            products = new Set(data.products || []);
+                            vendors = new Set(data.vendors || []);
+                            
+                            saveData();
+                            renderItems();
+                            updateTotal();
+                            
+                            document.getElementById('syncStatus').textContent = `Importé: ${new Date().toLocaleString()}`;
+                        } catch (error) {
+                            alert('Erreur lors de l\'import du fichier');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
+        }
+
+        // Initialisation au chargement
+        window.onload = init;
     </script>
 </body>
 </html>
